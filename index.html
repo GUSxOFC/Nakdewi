@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GusOfcXD - App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://files.catbox.moe/mwy0ni.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    header {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .menu {
+      background: rgba(0, 0, 0, 0.7);
+      margin: 15px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px cyan;
+    }
+    input, select, button, textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background: linear-gradient(to right, #00c3ff, #7d2ae8);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px cyan;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+    }
+    .owner-info {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .owner-info img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      border: 2px solid white;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>  <header>GusOfcXD - App</header>  <!-- PROFIL OWNER -->  <div class="menu owner-info">
+    <img src="https://files.catbox.moe/mwy0ni.jpg" alt="Owner">
+    <p><strong>Nama Owner:</strong> GusOfcXD</p>
+    <p><strong>Status:</strong> Perkembangan bro</p>
+    <p><strong>Thanks to:</strong><br>GusOfcXD, Ryumi, Big Mouse, Resa, Puput, Zhifa, Fiyaa</p>
+  </div>  <!-- OTP SECTION -->  <div id="otpSection" class="menu">
+    <h2>Verifikasi OTP</h2>
+    <input type="text" id="waNumber" placeholder="Masukkan nomor WhatsApp kamu (628xxxxxxx)" />
+    <button onclick="kirimOTP()">Kirim OTP</button>
+    <div id="otpInputArea" style="display:none;">
+      <p>Kode OTP telah dikirim melalui WhatsApp</p>
+      <input type="text" id="otpCode" placeholder="Masukkan kode OTP" />
+      <button onclick="verifikasiOTP()">Verifikasi</button>
+    </div>
+  </div>  <!-- FITUR APP -->  <div id="fiturApp" style="display:none;">
+    <div class="menu">
+      <h2>Download Video TikTok</h2>
+      <input type="text" id="tiktokLink" placeholder="https://vt.tiktok.com/..." />
+      <button onclick="downloadTikTok()">Download</button>
+      <div id="videoResult"></div>
+    </div><div class="menu">
+  <h2>Spam Chat Bot Telegram</h2>
+  <input type="text" id="botToken" placeholder="Token Bot Telegram" />
+  <input type="text" id="chatId" placeholder="Chat ID Telegram" />
+  <input type="text" id="spamMessage" placeholder="Pesan untuk spam" />
+  <input type="number" id="spamJumlah" placeholder="Jumlah pesan" />
+  <button onclick="spamTelegram()">Kirim Spam</button>
+</div>
+
+<div class="menu">
+  <h2>Ganti Nama Bot Telegram</h2>
+  <input type="text" id="gantiToken" placeholder="Token Bot" />
+  <input type="text" id="namaBaru" placeholder="Nama baru bot" />
+  <button onclick="gantiNamaBot()">Ganti Nama</button>
+  <div id="gantiStatus"></div>
+</div>
+
+<div class="menu">
+  <h2>Screenshot Website</h2>
+  <input type="text" id="ssLink" placeholder="Masukkan link website" />
+  <button onclick="screenshotWeb()">Ambil Screenshot</button>
+  <div id="ssResult"></div>
+</div>
+
+<div class="menu">
+  <h2>Enchard Script</h2>
+  <input type="file" id="fileInput" accept=".js">
+  <button onclick="enchardScript()">Enchard</button>
+  <div id="enchardStatus"></div>
+</div>
+
+<div class="menu">
+  <h2>Kumpulan GB WhatsApp</h2>
+  <button onclick="document.getElementById('gbKumpulan').classList.toggle('hidden')">Enter</button>
+  <div id="gbKumpulan" class="hidden">
+    <p><strong>Link Grup 1:</strong><br><a href="https://chat.whatsapp.com/CWcWTbYFAC14auODL5FwWH" target="_blank">Join Grup GUSxOFC</a></p>
+    <p><strong>Link Grup 2:</strong><br><a href="https://chat.whatsapp.com/HVWPDvLa9aLA8XQQBeS7Cj" target="_blank">Join Grup Puput</a></p>
+  </div>
+</div>
+
+<div class="menu">
+  <h2>Cek Ganteng</h2>
+  <input type="text" id="namaGanteng" placeholder="Masukkan nama kamu" />
+  <button onclick="cekGanteng()">Cek</button>
+  <div id="hasilGanteng"></div>
+</div>
+
+<div class="menu">
+  <h2>Cek Cantik</h2>
+  <input type="text" id="namaCantik" placeholder="Masukkan nama kamu" />
+  <button onclick="cekCantik()">Cek</button>
+  <div id="hasilCantik"></div>
+</div>
+
+<div class="menu">
+  <h2>Ramalan Kamu</h2>
+  <input type="text" id="namaRamalan" placeholder="Nama kamu" />
+  <input type="number" id="tglLahir" placeholder="Tanggal lahir (1-31)" />
+  <input type="number" id="blnLahir" placeholder="Bulan lahir (1-12)" />
+  <input type="number" id="thnLahir" placeholder="Tahun lahir (cth: 2005)" />
+  <button onclick="ramalKamu()">Ramalkan</button>
+  <div id="hasilRamalan"></div>
+</div>
+
+  </div><script>
+  let kodeOTPGlobal = "";
+
+  function kirimOTP() {
+    const nomor = document.getElementById("waNumber").value;
+    if (!nomor.startsWith("62")) return alert("Gunakan kode negara, contoh 628xxxxxxx");
+    kodeOTPGlobal = Math.floor(100000 + Math.random() * 900000).toString();
+    const pesan = `Kode OTP kamu untuk mendaftar di website *GusOfcXD-id* adalah *${kodeOTPGlobal}* jangan bagi kode ini ke siapapun`;
+
+    fetch("https://api.ultramsg.com/instance127678/messages/chat?token=4h6itgxbqsfvf1ms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ to: "+" + nomor, body: pesan, priority: 10 })
+    }).then(() => {
+      alert("OTP dikirim ke WhatsApp kamu.");
+      document.getElementById("otpInputArea").style.display = "block";
+    }).catch(() => alert("Gagal mengirim OTP."));
+  }
+
+  function verifikasiOTP() {
+    const otpUser = document.getElementById("otpCode").value;
+    if (otpUser === kodeOTPGlobal) {
+      alert("Berhasil verifikasi!");
+      document.getElementById("otpSection").style.display = "none";
+      document.getElementById("fiturApp").style.display = "block";
+    } else {
+      alert("Kode OTP salah!");
+    }
+  }
+
+  function cekGanteng() {
+    const nama = document.getElementById("namaGanteng").value;
+    document.getElementById("hasilGanteng").innerHTML = nama ? `${nama} itu ganteng banget 😎` : "Isi nama dulu!";
+  }
+
+  function cekCantik() {
+    const nama = document.getElementById("namaCantik").value;
+    document.getElementById("hasilCantik").innerHTML = nama ? `${nama} itu cantik banget 💅` : "Isi nama dulu!";
+  }
+
+  function ramalKamu() {
+    const nama = document.getElementById("namaRamalan").value;
+    const tgl = document.getElementById("tglLahir").value;
+    const bln = document.getElementById("blnLahir").value;
+    const thn = document.getElementById("thnLahir").value;
+    if (!nama || !tgl || !bln || !thn) return alert("Lengkapi semua data!");
+    const angka = (parseInt(tgl) + parseInt(bln) + parseInt(thn)) % 5;
+    const hasil = [
+      "Kamu akan bertemu jodohmu tahun ini ❤️",
+      "Keuangan kamu makin stabil 💰",
+      "Hati-hati sama teman palsu 👀",
+      "Kamu akan jadi orang sukses 💼",
+      "Akan ada kabar baik minggu ini! 📩"
+    ];
+    document.getElementById("hasilRamalan").innerText = `Hai ${nama}, ramalan kamu adalah: ${hasil[angka]}`;
+  }
+
+  function downloadTikTok() {
+    const link = document.getElementById("tiktokLink").value;
+    if (!link) return alert("Masukkan link dulu!");
+    fetch(`https://tikwm.com/api/?url=${encodeURIComponent(link)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.data && data.data.play) {
+          document.getElementById("videoResult").innerHTML =
+            `<video src="${data.data.play}" controls autoplay></video>`;
+        } else {
+          alert("Gagal mengambil video!");
+        }
+      });
+  }
+
+  function spamTelegram() {
+    const token = document.getElementById("botToken").value;
+    const chatId = document.getElementById("chatId").value;
+    const message = document.getElementById("spamMessage").value;
+    const jumlah = parseInt(document.getElementById("spamJumlah").value);
+    if (!token || !chatId || !message || !jumlah) return alert("Isi semua field!");
+    for (let i = 0; i < jumlah; i++) {
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text: message })
+      });
+    }
+    alert("Pesan dikirim!");
+  }
+
+  function gantiNamaBot() {
+    const token = document.getElementById("gantiToken").value;
+    const newName = document.getElementById("namaBaru").value;
+    if (!token || !newName) return alert("Isi semua field!");
+    fetch(`https://api.telegram.org/bot${token}/setMyName`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: newName })
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("gantiStatus").innerText =
+        data.ok ? `Nama bot diganti ke: ${newName}` : `Gagal: ${data.description}`;
+    });
+  }
+
+  function screenshotWeb() {
+    const link = document.getElementById('ssLink').value;
+    if (!link) return alert("Masukkan URL dulu!");
+    const api = `https://image.thum.io/get/fullpage/${link}`;
+    document.getElementById('ssResult').innerHTML = `<img src="${api}" alt="screenshot" style="width:100%;border-radius:10px;margin-top:10px;">`;
+  }
+
+  function enchardScript() {
+    const file = document.getElementById("fileInput").files[0];
+    if (!file) return alert("Pilih file index.js dulu!");
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const isi = btoa(e.target.result);
+      const blob = new Blob([`eval(atob(\"${isi}\"))`], { type: 'text/javascript' });
+      const url = URL.createObjectURL(blob);
+      document.getElementById("enchardStatus").innerHTML = `<a href="${url}" download="fileindex_enchard.js"><button>Download Enchard File</button></a>`;
+    }
+    reader.readAsText(file);
+  }
+</script></body>
+  </html>
